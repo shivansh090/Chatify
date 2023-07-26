@@ -7,7 +7,7 @@ const io= require("socket.io")(server)
 app.use(express.static(path.join(__dirname+"/public")))
 const users={}
 
-io.on('connection', socket=>{
+io.sockets.on('connection', socket=>{
     socket.on('new-user-joined',namee=>{ 
         users[socket.id]=namee;
         socket.broadcast.emit('user-joined',namee);

@@ -3,9 +3,8 @@
     const form = document.getElementById("formm");
     const msgInp = document.getElementById("inpt");
     const container =document.getElementById("container");
-    //const socket=io()
-    const socket=new WebSocket("wss://sok.onrender.com")
-    
+    const socket=io()
+    //const socket=new WebSocket("wss://sok.onrender.com")
     const append =(message,position,namee)=>{
     const messageElement =document.createElement('div');
     if(position!=="center"){
@@ -31,6 +30,7 @@
         }
     })
    const namee = prompt("Enter your name to join");
+
    socket.emit('new-user-joined',namee)
   
    socket.on("receive",({message,name})=>{
