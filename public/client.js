@@ -19,20 +19,37 @@
     container.append(messageElement)
     }
 
+    const roomid = prompt("Enter room Id: ")
+    const namee = prompt("Enter your name to join");
+    var data={
+     namee:String,
+     roomid:String,
+     msg:""
+    }
+ if(namee && roomid){
+      data={
+         namee:namee,
+         roomid:roomid,
+         msg:""
+     }
+    socket.emit('new-user-joined',data);
+ }
+
     form.addEventListener("submit",(event)=>{
         event.preventDefault();
         const message=msgInp.value;
         if(message!==""){
         append(message, "right","You");
         scrolltobottom();
-        socket.emit("send",message);
+        data.msg=message;
+        socket.emit("send",data);
         msgInp.value="";
         }
     })
    const namee = prompt("Enter your name to join");
 
    socket.emit('new-user-joined',namee)
-  
+
    socket.on("receive",({message,name})=>{
     const namee=name;
      append(message,"left",namee)
