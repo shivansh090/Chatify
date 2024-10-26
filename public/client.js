@@ -46,7 +46,10 @@
         msgInp.value="";
         }
     })
-  
+   const namee = prompt("Enter your name to join");
+
+   socket.emit('new-user-joined',namee)
+
    socket.on("receive",({message,name})=>{
     const namee=name;
      append(message,"left",namee)
